@@ -1,0 +1,55 @@
+openapi: 3.0.1
+info:
+  title: webapi
+  version: "1.0"
+servers:
+- url: /
+paths:
+  /WeatherForecast:
+    get:
+      operationId: GetWeatherForecast
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/WeatherForecast'
+                type: array
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/WeatherForecast'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/WeatherForecast'
+                type: array
+          description: Success
+      tags:
+      - WeatherForecast
+components:
+  schemas:
+    WeatherForecast:
+      additionalProperties: false
+      example:
+        date: 2000-01-23T04:56:07.000+00:00
+        summary: summary
+        temperatureC: 0
+        temperatureF: 6
+      properties:
+        date:
+          format: date-time
+          type: string
+        temperatureC:
+          format: int32
+          type: integer
+        temperatureF:
+          format: int32
+          readOnly: true
+          type: integer
+        summary:
+          nullable: true
+          type: string
+      type: object
